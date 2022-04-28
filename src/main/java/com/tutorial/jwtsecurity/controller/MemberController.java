@@ -5,7 +5,7 @@ import com.tutorial.jwtsecurity.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin(origins = "http://localhost:8080") // 추가
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/member")
@@ -14,6 +14,13 @@ public class MemberController {
 
     @GetMapping("/me")
     public ResponseEntity<MemberResponseDto> getMyMemberInfo() {
+        return ResponseEntity.ok(memberService.getMyInfo());
+    }
+
+
+
+    @PostMapping("/me")
+    public ResponseEntity<MemberResponseDto> getMyMemberInfo2() {
         return ResponseEntity.ok(memberService.getMyInfo());
     }
 

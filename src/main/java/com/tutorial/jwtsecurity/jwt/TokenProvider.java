@@ -28,7 +28,7 @@ public class TokenProvider {
 //토큰의 생성 토큰의 유효성 검증 해주는 애들
     private static final String AUTHORITIES_KEY = "auth";
     private static final String BEARER_TYPE = "bearer";
-    private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 2;            // 30분
+    private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 15;            // 30분
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;  // 7일
 
     private final Key key;
@@ -93,7 +93,7 @@ public class TokenProvider {
 
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
-    //토큰을 파라미터로 받아서 파싱하고 유효성 검사
+    //토큰을 받아서 유효성 검사하기
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
